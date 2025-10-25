@@ -9,13 +9,15 @@ from playwright.sync_api import sync_playwright
 # ===========================
 # CONFIG
 # ===========================
-DOWNLOAD_DIR = r"C:\Downloads\AutoReports"
+BASE_DIR = os.getcwd()
+DOWNLOAD_DIR = os.path.join(BASE_DIR, "downloads")
+os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 USERNAME = "adityab_ta"
 USERNAME2 = "MonitoringIOCLTA"
 PASSWORD = "Pandas@971"
 PASSWORD2 = "Hello@123"
 
-NAMES_FILE = r"C:\Data\names.csv"
+NAMES_FILE = os.path.join(BASE_DIR, "names.csv")
 
 WB1_URL = "https://onex-aura.com"
 WB2_URL = "https://web.onex-aura.com"
