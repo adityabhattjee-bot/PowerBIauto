@@ -43,5 +43,6 @@ if __name__ == "__main__":
 
     # Path in OneDrive (modify as needed)
     onedrive_path = "Reports/final_report.csv"
-
-    upload_to_onedrive(access_token, local_file, onedrive_path)
+    
+    if os.path.exists(local_file):
+        upload_to_onedrive(access_token, local_file, onedrive_path)
