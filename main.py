@@ -39,7 +39,7 @@ def login_and_download(playwright, base_url, server_name):
          page.wait_for_load_state("networkidle")          
          page.fill("#email", USERNAME)
          page.fill("#password", PASSWORD)
-         page.click("#login_button")
+         page.click("#login_button",force=True)
          print("clicked Login")
       else:
          page.fill("#email", USERNAME2)
