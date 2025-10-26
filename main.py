@@ -27,7 +27,7 @@ WB2_URL = "https://web.onex-aura.com"
 # ===========================
 
 def login_and_download(playwright, base_url, server_name):
-    browser = playwright.chromium.launch(headless=False)
+    browser = playwright.chromium.launch(headless=True)
     context = browser.new_context(accept_downloads=True)
     page = context.new_page()
     page.goto(base_url, timeout=60000)
