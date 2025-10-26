@@ -33,18 +33,23 @@ def login_and_download(playwright, base_url, server_name):
     page.goto(base_url, timeout=60000)
 
     # Fill login form
-    if(base_url == "https://onex-aura.com"):
-       page.fill("#email", USERNAME)
-       page.fill("#password", PASSWORD)
-       page.click("#login_button")
-       print("clicked Login")
-    else:
-       page.fill("#email", USERNAME2)
-       page.fill("#password", PASSWORD2)
-       page.click("#login_button")
+    NotLoggedin = True
+    while(Notloggedin):
+      if(base_url == "https://onex-aura.com"):
+         page.fill("#email", USERNAME)
+         page.fill("#password", PASSWORD)
+         page.click("#login_button")
+         print("clicked Login")
+      else:
+         page.fill("#email", USERNAME2)
+         page.fill("#password", PASSWORD2)
+         page.click("#login_button")
 
-    # Wait for redirect / dashboard
-    page.wait_for_load_state("networkidle")
+      # Wait for redirect / dashboard
+      page.wait_for_load_state("networkidle")
+      if "dashboard" in page.url:
+          Notloggedin = False
+          print("Logged In")
 
     # Go to downloads page
     download_page_url = base_url + "/report"
