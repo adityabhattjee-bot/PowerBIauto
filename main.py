@@ -63,23 +63,32 @@ def login_and_download(playwright, base_url, server_name):
     page.click("#download_csv")
     page.wait_for_load_state("networkidle")
     print("clicked Download")
+    page.wait_for_timeout(2000)
     page.goto(download_page_url)
     page.wait_for_load_state("networkidle")
     page.wait_for_timeout(8000)
-
-    page.click("#pills-download-data-tab")
-    page.wait_for_load_state("networkidle")
-    page.wait_for_timeout(3000)
+    countingretry = 1
+    nodownloadlink = True
+    while nodownloadlink:
+      page.goto(download_page_url)
+      page.wait_for_load_state("networkidle")
+      page.click("#pills-download-data-tab")
+      page.wait_for_load_state("networkidle")
+      page.wait_for_timeout(3000)
     
-    # Find the newest link (closest to current time)
-    links = page.query_selector_all("a[href^='../onex_downloads/csv/latency_hour_report_download']")
-    if not links:
-        print(f"[{server_name}] ❌ No download links found.")
-        context.close()
-        browser.close()
-        return None
+      # Find the newest link (closest to current time)
+      links = page.query_selector_all("a[href^='../onex_downloads/csv/latency_hour_report_download']")
+      if not links:
+          print(f"[{server_name}] ❌ No download links found.")
+          countingretry = countingretry + 1
+          if countingretry > 5
+            context.close()
+            browser.close()
+            return None
+      else:
+          nodownloadlink = False  
 
-    page.wait_for_timeout(2000)
+    
     # pick the most recent link
     latest_link = links[0]
     href = latest_link.get_attribute("href")
