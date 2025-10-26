@@ -34,7 +34,7 @@ def login_and_download(playwright, base_url, server_name):
 
     # Fill login form
     NotLoggedin = True
-    while(Notloggedin):
+    while Notloggedin == True:
       if(base_url == "https://onex-aura.com"):
          page.fill("#email", USERNAME)
          page.fill("#password", PASSWORD)
