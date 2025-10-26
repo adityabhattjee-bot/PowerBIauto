@@ -27,7 +27,7 @@ WB2_URL = "https://web.onex-aura.com"
 # ===========================
 
 def login_and_download(playwright, base_url, server_name):
-    browser = playwright.chromium.launch(headless=True)
+    browser = playwright.chromium.launch(headless=False)
     context = browser.new_context(accept_downloads=True)
     page = context.new_page()
     page.goto(base_url, timeout=60000)
@@ -37,6 +37,7 @@ def login_and_download(playwright, base_url, server_name):
        page.fill("#email", USERNAME)
        page.fill("#password", PASSWORD)
        page.click("#login_button")
+       print("clicked Login")
     else:
        page.fill("#email", USERNAME2)
        page.fill("#password", PASSWORD2)
@@ -50,19 +51,21 @@ def login_and_download(playwright, base_url, server_name):
     anal_page = base_url + "/analytics"
     page.goto(anal_page)
     page.click("#latency_hour_report")
+    print("clicked Latency")
     page.wait_for_load_state("networkidle")
     page.click("#dropdownMenuLink")
     page.wait_for_load_state("networkidle")
     page.click("#download_csv")
     page.wait_for_load_state("networkidle")
+    print("clicked Download")
     page.goto(download_page_url)
     page.wait_for_load_state("networkidle")
-    page.wait_for_timeout(7000)
+    page.wait_for_timeout(8000)
 
     page.click("#pills-download-data-tab")
     page.wait_for_load_state("networkidle")
-    page.wait_for_timeout(5000)
-
+    page.wait_for_timeout(3000)
+    
     # Find the newest link (closest to current time)
     links = page.query_selector_all("a[href^='../onex_downloads/csv/latency_hour_report_download']")
     if not links:
