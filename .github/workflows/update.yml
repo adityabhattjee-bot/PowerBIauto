@@ -18,6 +18,17 @@ jobs:
       with:
         python-version: '3.11'
 
+    - name: Cache Python & Playwright
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/pip
+          ~/.cache/ms-playwright
+        key: ${{ runner.os }}-python-playwright-${{ hashFiles('requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-python-playwright-
+
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
