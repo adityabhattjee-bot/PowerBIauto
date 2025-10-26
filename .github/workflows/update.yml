@@ -25,7 +25,17 @@ jobs:
         playwright install chromium
 
     - name: Run scraper
-      run: main.py
+      run: |
+      python -u main.py > runlog.txt 2>&1 || true
+      echo "---- START LOG ----"
+      cat runlog.txt
+      echo "---- END LOG ----"
+
+    - name: Upload full log
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-log
+          path: runlog.txt
 
     - name: Upload to OneDrive
       env:
