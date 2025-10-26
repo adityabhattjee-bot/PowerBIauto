@@ -36,6 +36,7 @@ def login_and_download(playwright, base_url, server_name):
     NotLoggedin = True
     while NotLoggedin == True:
       if(base_url == "https://onex-aura.com"):
+         page.wait_for_load_state("networkidle")          
          page.fill("#email", USERNAME)
          page.fill("#password", PASSWORD)
          page.click("#login_button")
@@ -50,7 +51,9 @@ def login_and_download(playwright, base_url, server_name):
       if "dashboard" in page.url:
           NotLoggedin = False
           print("Logged In")
-
+      else:
+          page.goto(base_url)
+          
     # Go to downloads page
     download_page_url = base_url + "/report"
     anal_page = base_url + "/analytics"
