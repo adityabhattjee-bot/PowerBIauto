@@ -17,7 +17,7 @@ USERNAME2 = "MonitoringIOCLTA"
 PASSWORD = "Pandas@971"
 PASSWORD2 = "Hello@123"
 
-NAMES_FILE = os.path.join(BASE_DIR, "names.csv")
+NAMES_FILE = os.path.join(BASE_DIR, "Names.csv")
 
 WB1_URL = "https://onex-aura.com"
 WB2_URL = "https://web.onex-aura.com"
