@@ -81,7 +81,7 @@ def login_and_download(playwright, base_url, server_name):
       if not links:
           print(f"[{server_name}] ❌ No download links found.")
           countingretry = countingretry + 1
-          if countingretry > 5
+          if countingretry > 5:
             context.close()
             browser.close()
             return None
