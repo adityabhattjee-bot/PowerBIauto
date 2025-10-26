@@ -126,8 +126,8 @@ def main():
     os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
     with sync_playwright() as p:
-        file1_zip = login_and_download(p, WB1_URL, "Server 1")
-        file2_zip = login_and_download(p, WB2_URL, "Server 2")
+        file1_zip = login_and_download(p, WB2_URL, "Server 1")
+        file2_zip = login_and_download(p, WB1_URL, "Server 2")
 
     if not (file1_zip and file2_zip):
         print("❌ One or both downloads failed. Exiting.")
