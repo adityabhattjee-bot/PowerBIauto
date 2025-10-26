@@ -34,7 +34,7 @@ def login_and_download(playwright, base_url, server_name):
 
     # Fill login form
     NotLoggedin = True
-    while Notloggedin == True:
+    while NotLoggedin == True:
       if(base_url == "https://onex-aura.com"):
          page.fill("#email", USERNAME)
          page.fill("#password", PASSWORD)
@@ -48,7 +48,7 @@ def login_and_download(playwright, base_url, server_name):
       # Wait for redirect / dashboard
       page.wait_for_load_state("networkidle")
       if "dashboard" in page.url:
-          Notloggedin = False
+          NotLoggedin = False
           print("Logged In")
 
     # Go to downloads page
