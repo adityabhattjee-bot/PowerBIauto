@@ -34,7 +34,8 @@ def login_and_download(playwright, base_url, server_name):
 
     # Fill login form
     NotLoggedin = True
-    while NotLoggedin == True:
+    retry = 0
+    while NotLoggedin == True and retry < 5:
       if(base_url == "https://onex-aura.com"):
          page.wait_for_load_state("networkidle")          
          page.fill("#email", USERNAME)
@@ -53,6 +54,7 @@ def login_and_download(playwright, base_url, server_name):
           print("Logged In")
       else:
           page.goto(base_url)
+          retry = retry + 1
           
     # Go to downloads page
     download_page_url = base_url + "/report"
