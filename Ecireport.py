@@ -70,7 +70,7 @@ def login_and_download(playwright, base_url, server_name):
       page.wait_for_timeout(1000)
     
       # Find the newest link (closest to current time)
-      links = page.query_selector_all("a[href^='../onex_downloads/csv/latency_hour_report_download']")
+      links = page.query_selector_all("a[href^='../onex_downloads/csv/latency_report_download']")
       if not links:
           print(f"[{server_name}] ❌ No download links found.")
           countingretry = countingretry + 1
