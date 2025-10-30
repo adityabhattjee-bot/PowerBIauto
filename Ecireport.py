@@ -131,7 +131,7 @@ def main():
 
     # Inner join with names.csv
     names = pd.read_csv(NAMES_FILE)
-    final = pd.merge(csv1, names, on="TUC ID", how="inner")
+    final = pd.merge(names, csv1, on="TUC ID", how="inner")
 
     # Save final output
     output_path = os.path.join(DOWNLOAD_DIR, "final_report.csv")
