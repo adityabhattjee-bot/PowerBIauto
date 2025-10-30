@@ -37,7 +37,7 @@ jobs:
 
     - name: Run scraper
       run: |
-        python -u main.py > runlog.txt 2>&1 || true
+        python -u ecireport.py > runlog.txt 2>&1 || true
         echo "---- START LOG ----"
         cat runlog.txt
         echo "---- END LOG ----"
@@ -54,4 +54,4 @@ jobs:
         CLIENT_SECRET: ${{ secrets.ONEDRIVE_CLIENT_SECRET }}
         REFRESH_TOKEN: ${{ secrets.ONEDRIVE_REFRESH_TOKEN }}
       run: |
-        python upload_to_onedrive.py
+        python updateeci.py
