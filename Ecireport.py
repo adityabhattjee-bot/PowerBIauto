@@ -2,6 +2,7 @@ import os
 import time
 import zipfile
 import glob
+import pytz
 import pandas as pd
 from datetime import datetime
 from playwright.sync_api import sync_playwright
@@ -128,6 +129,13 @@ def main():
     csv1 = unzip_and_rename(file1_zip, "summary.csv")
 
     # Merge the CSVs
+    ist = pytz.timezone('Asia/Kolkata')
+
+    # Get current time in IST
+    timestamp_ist = datetime.now(ist).strftime("%Y-%m-%d %H:%M:%S")
+
+    # Add timestamp column
+    df1["Last Updated On"] = timestamp_ist
 
     # Inner join with names.csv
     names = pd.read_csv(NAMES_FILE)
