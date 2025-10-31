@@ -134,14 +134,13 @@ def main():
     # Get current time in IST
     timestamp_ist = datetime.now(ist).strftime("%Y-%m-%d %H:%M:%S")
 
-    # Add timestamp column
-    df1["Last Updated On"] = timestamp_ist
 
     # Inner join with names.csv
     names = pd.read_csv(NAMES_FILE)
     df1 = pd.read_csv(csv1)
     final = pd.merge(names, df1, on="TUC ID", how="inner")
-
+    # Add timestamp column
+    final["Last Updated On"] = timestamp_ist
     # Save final output
     output_path = os.path.join(DOWNLOAD_DIR, "final_report.csv")
     final.to_csv(output_path, index=False)
