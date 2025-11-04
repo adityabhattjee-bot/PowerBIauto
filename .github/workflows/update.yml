@@ -2,7 +2,7 @@ name: Upload CSV to OneDrive
 
 on:
   schedule:
-     - cron: "*/20 * * * *"
+     - cron: "0 */12 * * *"
   workflow_dispatch:          # allows manual run
 
 jobs:
